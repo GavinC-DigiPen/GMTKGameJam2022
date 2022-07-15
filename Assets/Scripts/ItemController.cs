@@ -43,15 +43,34 @@ public class ItemController : MonoBehaviour
 
         if (keyPressed) 
         {
-            if (touchingGuns.Count != 0) 
+            GameObject closestDroppedGun = null;
+            float min_distance = 100;
+
+            for (int i = 0; i < touchingGuns.Count; i++) 
             {
+                GameObject gun = touchingGuns[i];
+
+                if (!gun.GetComponent<Gun>().isHeld)
+                {
+                    float new_distance = (gun.transform.position - gameObject.transform.position).magnitude;
+
+                    if (new_distance < min_distance)
+                    {
+                        min_distance = new_distance;
+
+                        closestDroppedGun = gun;
+                    }
+                }
+            }
+
+            if (closestDroppedGun != null) {
                 if (GameManger.primaryWeapon != null)
                 {
                     GameManger.primaryWeapon.GetComponent<Gun>().isHeld = false;
                 }
 
-                GameManger.primaryWeapon = touchingGuns[0];
-                touchingGuns[0].GetComponent<Gun>().isHeld = true;
+                GameManger.primaryWeapon = closestDroppedGun;
+                GameManger.primaryWeapon.GetComponent<Gun>().isHeld = true;
             }
         }
     }
