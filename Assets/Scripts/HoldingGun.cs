@@ -12,7 +12,9 @@ using UnityEngine;
 
 public class HoldingGun : MonoBehaviour
 {
-    public Vector3 offSet;
+    [Tooltip("The offset of the center")]
+    public Vector3 offset;
+    [Tooltip("The distance from center the gun will be")]
     public float distanceFromCenter;
 
     // Update is called once per frame
@@ -25,7 +27,7 @@ public class HoldingGun : MonoBehaviour
             Vector3 direction = mousePosition - transform.position;
             direction = direction.normalized;
 
-            heldGun.transform.position = (transform.position + offSet) + (direction * distanceFromCenter);
+            heldGun.transform.position = (transform.position + offset) + (direction * distanceFromCenter);
         }
     }
 }

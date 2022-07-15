@@ -15,21 +15,16 @@ public class Gun : MonoBehaviour
     [Tooltip("If the gun is being held or not")]
     public bool isHeld = false;
     [Tooltip("The prefab of the bullet")] [SerializeField] 
-    private GameObject bulletPrefab;
+    protected GameObject bulletPrefab;
     [Tooltip("The time between bullet shots")] [SerializeField]
     private float shotDelay = 0.5f;
 
     private float shotTimer = 0;
-    private int nextBulletValue = -1;
-    private SpriteRenderer nextBulletIndicator;
+    protected int[] nextBulletValue = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 
     // Start is called before the first frame update
     void Start()
     {
-        //testing
-        GameManger.primaryWeapon = gameObject;
-
-        nextBulletIndicator = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
         RollNextDice();
     }
 
@@ -58,20 +53,19 @@ public class Gun : MonoBehaviour
         }
     }
 
+    // Set the value of the dice
+    virtual protected void RollNextDice()
+    {
+        nextBulletValue[0] = Random.Range(1, bulletPrefab.GetComponent<Bullet>().numSides + 1);
+    }
+
     // Shot the gun
-    void Shoot()
+    virtual protected void Shoot()
     {
         GameObject newBullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
 
-        newBullet.GetComponent<Bullet>().rolledValue = nextBulletValue;
+        newBullet.GetComponent<Bullet>().rolledValue = nextBulletValue[0];
         newBullet.GetComponent<Bullet>().Shoot();
         RollNextDice();
-    }
-
-    // Set the value of the dice
-    void RollNextDice()
-    {
-        nextBulletValue = Random.Range(1, bulletPrefab.GetComponent<Bullet>().numSides + 1);
-        nextBulletIndicator.sprite = bulletPrefab.GetComponent<Bullet>().sprites[nextBulletValue - 1];
     }
 }
