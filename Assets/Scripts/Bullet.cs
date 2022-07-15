@@ -12,19 +12,28 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public int numSides = 6;
+    [Tooltip("The damage value rolled")]
     public int rolledValue = -1;
+    [Tooltip("The number of sides the dice has")]
+    public int numSides = 6;
+    [Tooltip("The sprites for dice")]
     public Sprite[] sprites;
+    [Tooltip("The velocity of the bullet")] [SerializeField]
+    private float velocity = 15;
 
-    // Start is called before the first frame update
-    void Start()
+    // Shoot the bullet
+    public void Shoot()
     {
-        
+        GetComponent<SpriteRenderer>().sprite = sprites[rolledValue - 1];
+        GetComponent<Rigidbody2D>().velocity = transform.up * velocity;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.currentHealth -= rolledValue;
+        }
     }
 }
