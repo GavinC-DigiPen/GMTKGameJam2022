@@ -10,10 +10,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemPickUp : MonoBehaviour
+public class GunPickUp : MonoBehaviour
 {
 
-    public KeyCode key;
+    public KeyCode key = KeyCode.E;
     private List<GameObject> touchingGuns;
 
     void Start() 
