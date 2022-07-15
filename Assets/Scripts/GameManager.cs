@@ -13,30 +13,22 @@ using UnityEngine.Events;
 
 public class GameManger : MonoBehaviour
 {
-    public static UnityEvent PrimaryWeaponUpdate = new UnityEvent();
-    private static GameObject _primaryWeapon;
-    public static GameObject primaryWeapon
+    public static GameObject primaryWeapon;
+    public static GameObject secondaryWeapon;
+
+    public static int maxHealth = 6;
+    public static UnityEvent CurrentHealthUpdate = new UnityEvent();
+    private static int _currentHealth = 6;
+    public static int currentHealth
     {
         get
         {
-            return _primaryWeapon;
+            return _currentHealth;
         }
         set
         {
-            _primaryWeapon = value;
-            PrimaryWeaponUpdate.Invoke();
+            _currentHealth = value;
+            CurrentHealthUpdate.Invoke();
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

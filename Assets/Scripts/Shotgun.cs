@@ -26,7 +26,7 @@ public class Shotgun : Gun
         }
     }
 
-    // Shot the gun
+    // Shoot the gun
     protected override void Shoot()
     {
         float startingOffset = degreesOfFire / 2.0f;

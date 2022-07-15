@@ -39,6 +39,15 @@ public class Gun : MonoBehaviour
             direction = direction.normalized;
             float rotation = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, -rotation));
+
+            if (-rotation > 0)
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
         }
 
         // Shooting gun
@@ -59,7 +68,7 @@ public class Gun : MonoBehaviour
         nextBulletValue[0] = Random.Range(1, bulletPrefab.GetComponent<Bullet>().numSides + 1);
     }
 
-    // Shot the gun
+    // Shoot the gun
     virtual protected void Shoot()
     {
         GameObject newBullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
