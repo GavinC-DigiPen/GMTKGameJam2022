@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     // Scalar for player max speed
     public float speed;
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         // get user input
