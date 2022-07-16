@@ -18,7 +18,7 @@ public class HoldingGun : MonoBehaviour
     public float distanceFromCenter;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         GameObject heldGun = GameManger.primaryWeapon;
         if (heldGun)

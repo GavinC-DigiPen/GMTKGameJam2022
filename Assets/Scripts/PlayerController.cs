@@ -30,19 +30,23 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManger.player = gameObject;
         playerRB = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Get direction
         direction.x = MostRecentKey(leftKey, rightKey, (int)direction.x);
         direction.y = MostRecentKey(downKey, upKey, (int)direction.y);
 
+        // Accelerate
         Vector2 newVelocity = playerRB.velocity;
         newVelocity.x += acceleration * direction.x;
         newVelocity.y += acceleration * direction.y;
 
+        // Slow player down
         if (direction.x == 0)
         {
             newVelocity.x = Mathf.Lerp(newVelocity.x, 0, slowDown);
@@ -52,8 +56,16 @@ public class PlayerController : MonoBehaviour
             newVelocity.y = Mathf.Lerp(newVelocity.y, 0, slowDown);
         }
 
+        // Change Velocity
         playerRB.velocity = newVelocity;
         playerRB.velocity = Vector2.ClampMagnitude(playerRB.velocity, maxSpeed);
+
+        // Flip player with gun
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 directionVector = mousePosition - transform.position;
+        directionVector = directionVector.normalized;
+        float rotation = Mathf.Atan2(directionVector.x, directionVector.y) * Mathf.Rad2Deg;
+        GetComponent<SpriteRenderer>().flipX = (rotation < 0);
     }
 
     // Find the most recent key pushed or currently pushed

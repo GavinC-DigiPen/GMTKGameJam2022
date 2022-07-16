@@ -13,6 +13,9 @@ using UnityEngine.Events;
 
 public class GameManger : MonoBehaviour
 {
+    // The player
+    public static GameObject player;
+
     // Weapons
     public static UnityEvent PrimaryWeaponUpdate = new UnityEvent();
     private static GameObject _primaryWeapon;

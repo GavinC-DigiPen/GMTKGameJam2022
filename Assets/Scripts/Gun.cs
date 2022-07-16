@@ -15,6 +15,8 @@ public class Gun : MonoBehaviour
 {
     [Tooltip("If the gun is being held or not")]
     public bool isHeld = false;
+    [Tooltip("The child that is the image of the gun")] [SerializeField]
+    private GameObject gunImage;
     [Tooltip("The prefab of the bullet")]
     public GameObject bulletPrefab;
     [Tooltip("The number of bullets to spawn")]
@@ -23,7 +25,10 @@ public class Gun : MonoBehaviour
     public Sprite gunIcon;
     [Tooltip("The time between bullet shots")] [SerializeField]
     private float shotCooldown = 0.5f;
-    public int[] nextBulletValue = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+    [Tooltip("The amount of kickback the gun has")] [SerializeField]
+    private float kickback = 0.1f;
+    [Tooltip("All the bullet's value (not all are used with all weapons")]
+    public List<int> nextBulletValue;
 
     private float shotTimer = 0.0f;
 
@@ -32,6 +37,12 @@ public class Gun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        nextBulletValue = new List<int>();
+        for (int i = 0; i < numBullets; i++)
+        {
+            nextBulletValue.Add(1);
+        }
+
         RollNextDice();
     }
 
@@ -42,30 +53,25 @@ public class Gun : MonoBehaviour
         if (isHeld)
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 direction = mousePosition - transform.position;
+            Vector2 direction = mousePosition - transform.position;
             direction = direction.normalized;
             float rotation = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, -rotation));
+            gunImage.GetComponent<SpriteRenderer>().flipX = (rotation < 0);
 
-            if (-rotation > 0)
+            // Shooting gun
+            if (shotTimer <= 0 && Input.GetMouseButton(0))
             {
-                GetComponent<SpriteRenderer>().flipX = true;
+                Shoot();
+                Debug.Log(direction);
+                gunImage.transform.localPosition = gunImage.transform.localPosition - new Vector3(((rotation > 0) ? 1 : -1), 1, 0) * kickback;
+                shotTimer = shotCooldown;
             }
-            else
+            if (shotTimer > 0)
             {
-                GetComponent<SpriteRenderer>().flipX = false;
+                shotTimer -= Time.deltaTime;
             }
-        }
-
-        // Shooting gun
-        if (isHeld && shotTimer <= 0 &&  Input.GetMouseButton(0))
-        {
-            Shoot();
-            shotTimer = shotCooldown;
-        }
-        if (shotTimer > 0)
-        {
-            shotTimer -= Time.deltaTime;
+            gunImage.transform.localPosition = Vector3.Lerp(gunImage.transform.localPosition, Vector3.zero, 0.01f);
         }
     }
 
