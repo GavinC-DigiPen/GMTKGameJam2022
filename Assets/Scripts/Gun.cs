@@ -63,9 +63,9 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Rotating gun
         if (isHeld)
         {
+            // Rotating gun
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction = mousePosition - transform.position;
             direction = direction.normalized;
