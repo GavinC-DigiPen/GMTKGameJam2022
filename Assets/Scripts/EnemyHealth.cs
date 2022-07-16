@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 //
-// File Name:	Enemy.cs
+// File Name:	EnemyHealth.cs
 // Author(s):	Gavin Cooper (gavin.cooper)
 // Project:	    GMTK GameJam 2022
 //

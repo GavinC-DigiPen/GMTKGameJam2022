@@ -79,7 +79,7 @@ public class Gun : MonoBehaviour
                 Shoot();
                 shotTimer = shotCooldown;
 
-                gunImage.transform.localPosition = gunImage.transform.localPosition - new Vector3(((rotation > 0) ? 1 : -1), 1, 0) * kickback;
+                gunImage.transform.localPosition = gunImage.transform.localPosition - new Vector3(((rotation > 0) ? 1 : -1), 0.7f, 0) * kickback;
             }
             if (shotTimer > 0)
             {
