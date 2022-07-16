@@ -14,13 +14,18 @@ public class EnemyObject : MonoBehaviour
 {
     [Tooltip("The amount of damge the object does")] [SerializeField]
     private int damage = 1;
+    [Tooltip("If the object is destroyed on contact")] [SerializeField]
+    private bool destroyOnContact = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
             GameManger.currentHealth -= damage;
-            Destroy(gameObject, 0.1f);
+            if (destroyOnContact)
+            {
+                Destroy(gameObject, 0.1f);
+            }
         }
     }
 
@@ -29,7 +34,10 @@ public class EnemyObject : MonoBehaviour
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
             GameManger.currentHealth -= damage;
-            Destroy(gameObject);
+            if (destroyOnContact)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
