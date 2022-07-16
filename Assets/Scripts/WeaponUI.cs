@@ -88,7 +88,7 @@ public class WeaponUI : MonoBehaviour
         if (GameManger.primaryWeapon != null)
         {
             Gun primaryGun = GameManger.primaryWeapon.GetComponent<Gun>();
-            for (int i = 0; i < primaryGun.numBullets; i++)
+            for (int i = 0; i < primaryGun.numBullets && i < primaryWeaponDiceObjects.Length; i++)
             {
                 primaryWeaponDiceObjects[i].GetComponent<Image>().sprite = primaryGun.bulletPrefab.GetComponent<Bullet>().sprites[primaryGun.nextBulletValue[i] - 1];
             }
@@ -98,7 +98,7 @@ public class WeaponUI : MonoBehaviour
         if (GameManger.secondaryWeapon != null)
         {
             Gun secondaryGun = GameManger.secondaryWeapon.GetComponent<Gun>();
-            for (int i = 0; i < secondaryGun.numBullets; i++)
+            for (int i = 0; i < secondaryGun.numBullets && i < secondaryWeaponDiceObjects.Length; i++)
             {
                 secondaryWeaponDiceObjects[i].GetComponent<Image>().sprite = secondaryGun.bulletPrefab.GetComponent<Bullet>().sprites[secondaryGun.nextBulletValue[i] - 1];
             }

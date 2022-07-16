@@ -15,16 +15,6 @@ public class Shotgun : Gun
     [Tooltip("Degrees of the fire")] [SerializeField]
     private float degreesOfFire = 60.0f;
 
-    // Set the value of the dice
-    protected override void RollNextDice()
-    {
-        for (int i = 0; i < numBullets; i++)
-        {
-            nextBulletValue[i] = Random.Range(1, bulletPrefab.GetComponent<Bullet>().numSides + 1);
-        }
-        DiceRollUpdate.Invoke();
-    }
-
     // Shoot the gun
     protected override void Shoot()
     {

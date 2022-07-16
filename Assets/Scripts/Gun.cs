@@ -21,6 +21,8 @@ public class Gun : MonoBehaviour
     public GameObject bulletPrefab;
     [Tooltip("The number of bullets to spawn")]
     public int numBullets = 1;
+    [Tooltip("Time inbetween bullets being released")] [SerializeField]
+    private float timeBetweenBullets = 0.1f;
     [Tooltip("The sprite used as the icon for the gun")]
     public Sprite gunIcon;
     [Tooltip("The time between bullet shots")] [SerializeField]
@@ -30,7 +32,7 @@ public class Gun : MonoBehaviour
     [Tooltip("All the bullet's value (not all are used with all weapons")]
     public List<int> nextBulletValue;
 
-    private float shotTimer = 0.0f;
+    private static float shotTimer = 0.0f;
 
     public static UnityEvent DiceRollUpdate = new UnityEvent();
 
@@ -63,7 +65,6 @@ public class Gun : MonoBehaviour
             if (shotTimer <= 0 && Input.GetMouseButton(0))
             {
                 Shoot();
-                Debug.Log(direction);
                 gunImage.transform.localPosition = gunImage.transform.localPosition - new Vector3(((rotation > 0) ? 1 : -1), 1, 0) * kickback;
                 shotTimer = shotCooldown;
             }
@@ -78,17 +79,30 @@ public class Gun : MonoBehaviour
     // Set the value of the dice
     virtual protected void RollNextDice()
     {
-        nextBulletValue[0] = Random.Range(1, bulletPrefab.GetComponent<Bullet>().numSides + 1);
+        for (int i = 0; i < numBullets; i++)
+        {
+            nextBulletValue[i] = Random.Range(1, bulletPrefab.GetComponent<Bullet>().numSides + 1);
+        }
         DiceRollUpdate.Invoke();
     }
 
     // Shoot the gun
     virtual protected void Shoot()
     {
-        GameObject newBullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+        for (int i = 0; i < numBullets; i++)
+        {
+            StartCoroutine(InstantiateBullet(bulletPrefab, transform.position, transform.rotation, i * timeBetweenBullets));
+        }
+        RollNextDice();
+    }
+
+    IEnumerator InstantiateBullet(GameObject obj, Vector3 position, Quaternion rotation, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        GameObject newBullet = Instantiate(obj, position, rotation);
 
         newBullet.GetComponent<Bullet>().rolledValue = nextBulletValue[0];
         newBullet.GetComponent<Bullet>().Shoot();
-        RollNextDice();
     }
 }
