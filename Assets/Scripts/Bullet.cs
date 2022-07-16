@@ -39,7 +39,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Enemy1Controller enemy = collision.gameObject.GetComponent<Enemy1Controller>();
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         if (enemy != null)
         {
             enemy.currentHealth -= rolledValue;

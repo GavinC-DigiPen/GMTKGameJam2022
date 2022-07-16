@@ -11,17 +11,12 @@ public class Enemy1Controller : MonoBehaviour
     public string state = "follow";
     public int state_time = 0;
 
-    public int maxHealth = 5;
-    public int currentHealth;
-
     private Vector2 virtuallyFacing;
     private Rigidbody2D EnemyRB;
     private void Start()
     {
         player = FindObjectOfType<PlayerController>().gameObject;
         EnemyRB = GetComponent<Rigidbody2D>();
-
-        currentHealth = maxHealth;
     }
 
     void FixedUpdate()
@@ -115,13 +110,5 @@ public class Enemy1Controller : MonoBehaviour
         }
 
         state_time += 1;
-    }
-
-    void Update()
-    {
-        if (currentHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
     }
 }
