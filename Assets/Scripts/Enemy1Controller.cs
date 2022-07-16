@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class Enemy1Controller : MonoBehaviour
 {
-    [SerializeField]
     private GameObject player;
     [SerializeField]
     private float speed = 1;
 
     public string state = "follow";
     public int state_time = 0;
+
+    public int maxHealth = 5;
+    public int currentHealth;
+
+    private Vector2 virtuallyFacing;
+    private Rigidbody2D EnemyRB;
+    private void Start()
+    {
+        player = FindObjectOfType<PlayerController>().gameObject;
+        EnemyRB = GetComponent<Rigidbody2D>();
+
+        currentHealth = maxHealth;
+    }
 
     void FixedUpdate()
     {
@@ -35,14 +47,17 @@ public class Enemy1Controller : MonoBehaviour
         switch (state)
         {
             case "follow":
-                transform.up = direction.normalized;
-                transform.Translate(Vector3.up * speed);
+
+                virtuallyFacing = new Vector2(direction.x, direction.y).normalized;
+                EnemyRB.velocity = virtuallyFacing * speed;
                 state = null;
                 break;
+
             case "prep lunge":
                 if (state_time == 1)
                 {
-                    transform.up = direction.normalized;
+                    EnemyRB.velocity = Vector2.zero;
+                    virtuallyFacing = direction.normalized;
                 }
                 if (state_time >= 15)
                 {
@@ -54,11 +69,11 @@ public class Enemy1Controller : MonoBehaviour
 
                 if (state_time <= 15)
                 {
-                    transform.Translate(Vector3.up * speed * 5);
+                    EnemyRB.velocity = virtuallyFacing * speed * 5;
                 }
                 else
                 {
-                    transform.Translate(Vector3.up * speed * (25 - state_time) / 2);
+                    EnemyRB.velocity = virtuallyFacing * speed * (25 - state_time) / 2;
                 }
 
                 if (state_time >= 25)
@@ -75,15 +90,15 @@ public class Enemy1Controller : MonoBehaviour
                 break;
             case "push back":
                 if (state_time == 1) {
-                    transform.up = direction.normalized;
+                    virtuallyFacing = direction.normalized;
                 }
 
                 if (state_time <= 20)
                 {
-                    transform.Translate(Vector3.up * speed * -2);
+                    EnemyRB.velocity = virtuallyFacing * speed * -2;
                 }
                 else {
-                    transform.Translate(Vector3.up * speed * (40 - state_time) / -10.0f);
+                    EnemyRB.velocity = virtuallyFacing * speed * (40 - state_time) / -10.0f;
                 }
                 if (state_time >= 40)
                 {
@@ -100,18 +115,13 @@ public class Enemy1Controller : MonoBehaviour
         }
 
         state_time += 1;
+    }
 
-        /*
-        switch (distance)
+    void Update()
+    {
+        if (currentHealth <= 0)
         {
-            case float n when n >= 1:
-                transform.up = direction.normalized;
-                transform.Translate(Vector3.up * speed);
-                break;
-            case float n when n < 1:
-                transform.up = direction.normalized;
-                break;
-            default: break;
-        }*/
+            Destroy(gameObject);
+        }
     }
 }

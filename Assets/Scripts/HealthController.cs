@@ -19,7 +19,6 @@ public class HealthController : MonoBehaviour
                 {
                     enemy.state = "push back";
                     enemy.state_time = 0;
-                    Debug.Log(enemy.name);
                 }
             }
         }
