@@ -74,10 +74,12 @@ public class GunPickUp : MonoBehaviour
             if (closestDroppedGun != null) {
                 if (GameManger.primaryWeapon != null)
                 {
+                    GameManger.primaryWeapon.GetComponent<BoxCollider2D>().enabled = true;
                     GameManger.primaryWeapon.GetComponent<Gun>().isHeld = false;
                 }
 
                 GameManger.primaryWeapon = closestDroppedGun;
+                GameManger.primaryWeapon.GetComponent<BoxCollider2D>().enabled = false;
                 GameManger.primaryWeapon.GetComponent<Gun>().isHeld = true;
             }
         }
