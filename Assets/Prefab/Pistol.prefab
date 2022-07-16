@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5636602180957820975}
   - component: {fileID: 1987827008454159042}
   - component: {fileID: 6579869625273593603}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,8 +143,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHeld: 0
   bulletPrefab: {fileID: 6587618335073330136, guid: a53ad355c186e5f4d977a7145b14094b, type: 3}
+  numBullets: 1
   gunIcon: {fileID: 21300000, guid: d33a68a58d06d6b42962888c412ed729, type: 3}
   shotCooldown: 0.5
+  nextBulletValue: 01000000010000000100000001000000010000000100000001000000010000000100000001000000
 --- !u!114 &6579869625273593603
 MonoBehaviour:
   m_ObjectHideFlags: 0

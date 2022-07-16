@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4524489066516350300}
   - component: {fileID: 7022743238988796520}
   - component: {fileID: 5384842453892795093}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,9 +208,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHeld: 0
   bulletPrefab: {fileID: 8215868802848505447, guid: b2ec9620cde0ddb418c0105cbe59cd99, type: 3}
+  numBullets: 3
   gunIcon: {fileID: 21300000, guid: 9c3850402b2f1ef47b49b84c5b5a24e6, type: 3}
   shotCooldown: 0.5
-  numBullets: 3
+  nextBulletValue: 01000000010000000100000001000000010000000100000001000000010000000100000001000000
   degreesOfFire: 45
 --- !u!114 &5384842453892795093
 MonoBehaviour:
