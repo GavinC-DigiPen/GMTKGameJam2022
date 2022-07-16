@@ -37,7 +37,7 @@ public class Shotgun : Gun
 
             float rotation = transform.rotation.eulerAngles.z - startingOffset;
             rotation += degreeIncrement * i;
-            newBullet.transform.rotation = Quaternion.Euler(new Vector3(newBullet.transform.rotation.x, newBullet.transform.rotation.y, rotation));
+            newBullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, rotation));
 
             newBullet.GetComponent<Bullet>().rolledValue = nextBulletValue[i];
             newBullet.GetComponent<Bullet>().Shoot();

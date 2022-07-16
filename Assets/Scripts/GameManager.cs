@@ -13,9 +13,24 @@ using UnityEngine.Events;
 
 public class GameManger : MonoBehaviour
 {
-    public static GameObject primaryWeapon;
+    // Weapons
+    public static UnityEvent PrimaryWeaponUpdate = new UnityEvent();
+    private static GameObject _primaryWeapon;
+    public static GameObject primaryWeapon
+    {
+        get
+        {
+            return _primaryWeapon;
+        }
+        set
+        {
+            _primaryWeapon = value;
+            PrimaryWeaponUpdate.Invoke();
+        }
+    }
     public static GameObject secondaryWeapon;
 
+    // Health
     public static int maxHealth = 6;
     public static UnityEvent CurrentHealthUpdate = new UnityEvent();
     private static int _currentHealth = 6;

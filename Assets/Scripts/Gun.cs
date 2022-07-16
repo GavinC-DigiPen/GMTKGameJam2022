@@ -17,9 +17,9 @@ public class Gun : MonoBehaviour
     [Tooltip("The prefab of the bullet")] [SerializeField] 
     protected GameObject bulletPrefab;
     [Tooltip("The time between bullet shots")] [SerializeField]
-    private float shotDelay = 0.5f;
+    private float shotCooldown = 0.5f;
 
-    private float shotTimer = 0;
+    private float shotTimer = 0.0f;
     protected int[] nextBulletValue = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 
     // Start is called before the first frame update
@@ -54,7 +54,7 @@ public class Gun : MonoBehaviour
         if (isHeld && shotTimer <= 0 &&  Input.GetMouseButton(0))
         {
             Shoot();
-            shotTimer = shotDelay;
+            shotTimer = shotCooldown;
         }
         if (shotTimer > 0)
         {

@@ -24,7 +24,6 @@ public class Bullet : MonoBehaviour
     // Shoot the bullet
     public void Shoot()
     {
-        GetComponent<SpriteRenderer>().sprite = sprites[rolledValue - 1];
         GetComponent<Rigidbody2D>().velocity = transform.up * velocity;
     }
 
@@ -34,6 +33,17 @@ public class Bullet : MonoBehaviour
         if (enemy != null)
         {
             enemy.currentHealth -= rolledValue;
+            Destroy(gameObject, 0.1f);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.currentHealth -= rolledValue;
+            Destroy(gameObject, 0.1f);
         }
     }
 }
