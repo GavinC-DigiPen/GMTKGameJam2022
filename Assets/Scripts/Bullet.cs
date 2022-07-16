@@ -12,6 +12,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [Tooltip("The base damage from the gun")]
+    public int baseDamage = -1;
     [Tooltip("The damage value rolled")]
     public int rolledValue = -1;
     [Tooltip("The number of sides the dice has")]
@@ -32,7 +34,7 @@ public class Bullet : MonoBehaviour
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         if (enemy != null)
         {
-            enemy.currentHealth -= rolledValue;
+            enemy.currentHealth -= (rolledValue + baseDamage);
             Destroy(gameObject, 0.1f);
         }
     }
@@ -42,7 +44,7 @@ public class Bullet : MonoBehaviour
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         if (enemy != null)
         {
-            enemy.currentHealth -= rolledValue;
+            enemy.currentHealth -= (rolledValue + baseDamage);
             Destroy(gameObject);
         }
     }
