@@ -18,10 +18,16 @@ public class WeaponUI : MonoBehaviour
     private GameObject primaryWeaponObject;
     [Tooltip("The primary weapon dice game objects")] [SerializeField]
     private GameObject[] primaryWeaponDiceObjects;
+    [Tooltip("The primary weapon base damage game object")] [SerializeField]
+    private GameObject primaryWeaponBaseDamageObject; 
     [Tooltip("The secondary weapon game object")] [SerializeField]
     private GameObject secondaryWeaponObject;
     [Tooltip("The secondary weapon dice game objects")] [SerializeField]
     private GameObject[] secondaryWeaponDiceObjects;
+    [Tooltip("The secondary weapon base damage game object")] [SerializeField]
+    private GameObject secondaryWeaponBaseDamageObject;
+    [Tooltip("The numbers used to display base damage")] [SerializeField]
+    private Sprite[] numberSprites;
 
     // Start is called before the first frame update
     void Start()
@@ -33,8 +39,6 @@ public class WeaponUI : MonoBehaviour
 
     void UpdateWeaponUI()
     {
-        UpdateDiceRollUI();
-
         // Primary
         if (GameManger.primaryWeapon != null)
         {
@@ -52,6 +56,8 @@ public class WeaponUI : MonoBehaviour
                     primaryWeaponDiceObjects[i].SetActive(false);
                 }
             }
+
+            primaryWeaponBaseDamageObject.GetComponent<Image>().sprite = numberSprites[(GameManger.primaryWeapon.GetComponent<Gun>().baseDamage > numberSprites.Length - 1) ? numberSprites.Length - 1 : GameManger.primaryWeapon.GetComponent<Gun>().baseDamage];
         }
         else
         {
@@ -75,11 +81,15 @@ public class WeaponUI : MonoBehaviour
                     secondaryWeaponDiceObjects[i].SetActive(false);
                 }
             }
+
+            secondaryWeaponBaseDamageObject.GetComponent<Image>().sprite = numberSprites[(GameManger.secondaryWeapon.GetComponent<Gun>().baseDamage > numberSprites.Length - 1) ? numberSprites.Length - 1 : GameManger.secondaryWeapon.GetComponent<Gun>().baseDamage];
         }
         else
         {
             secondaryWeaponObject.SetActive(false);
         }
+
+        UpdateDiceRollUI();
     }
 
     void UpdateDiceRollUI()

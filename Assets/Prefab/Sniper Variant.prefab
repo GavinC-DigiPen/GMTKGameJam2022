@@ -8,6 +8,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1987827008454159042, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
+      propertyPath: gunIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: c52ef59dc245ac348ba5bd59bad083e5, type: 3}
+    - target: {fileID: 1987827008454159042, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
+      propertyPath: gunSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0ff4c224ecdc50f4594382d6d9c67a5c, type: 3}
+    - target: {fileID: 1987827008454159042, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
       propertyPath: kickback
       value: 1
       objectReference: {fileID: 0}
@@ -67,6 +75,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3315122398186095517, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
+      propertyPath: m_Size.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3315122398186095517, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
+      propertyPath: m_Size.y
+      value: 4.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3583174083036826674, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -74,6 +90,10 @@ PrefabInstance:
     - target: {fileID: 3583174083036826674, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5636602180957820975, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
+      propertyPath: m_Radius
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7528337052827654498, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
       propertyPath: m_Sprite

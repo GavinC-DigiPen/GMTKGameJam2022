@@ -22,6 +22,11 @@ public class Shotgun : Gun
         float degreeIncrement = degreesOfFire / (numBullets - 1);
         for (int i = 0; i < numBullets; i++)
         {
+            if (gunSound)
+            {
+                gunAudioSource.PlayOneShot(gunSound);
+            }
+
             GameObject newBullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
 
             float rotation = transform.rotation.eulerAngles.z - startingOffset;
