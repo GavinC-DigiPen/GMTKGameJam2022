@@ -43,7 +43,7 @@ public class Bullet : MonoBehaviour
         if (enemy != null)
         {
             enemy.currentHealth -= rolledValue;
-            Destroy(gameObject, 0.1f);
+            Destroy(gameObject);
         }
     }
 }
