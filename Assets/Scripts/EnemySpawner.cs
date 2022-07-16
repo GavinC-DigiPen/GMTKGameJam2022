@@ -40,5 +40,7 @@ public class EnemySpawner : MonoBehaviour
                 Instantiate(enemyInfo[i].enemyPrefab, locations[Random.Range(0, locations.Count)]);
             }
         }
+
+        Destroy(gameObject);
     }
 }
