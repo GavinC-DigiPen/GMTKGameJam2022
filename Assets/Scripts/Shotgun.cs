@@ -12,8 +12,6 @@ using UnityEngine;
 
 public class Shotgun : Gun
 {
-    [Tooltip("The number of bullets to spawn")] [SerializeField] 
-    private int numBullets = 3;
     [Tooltip("Degrees of the fire")] [SerializeField]
     private float degreesOfFire = 60.0f;
 
@@ -24,6 +22,7 @@ public class Shotgun : Gun
         {
             nextBulletValue[i] = Random.Range(1, bulletPrefab.GetComponent<Bullet>().numSides + 1);
         }
+        DiceRollUpdate.Invoke();
     }
 
     // Shoot the gun

@@ -9,18 +9,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Gun : MonoBehaviour
 {
     [Tooltip("If the gun is being held or not")]
     public bool isHeld = false;
-    [Tooltip("The prefab of the bullet")] [SerializeField] 
-    protected GameObject bulletPrefab;
+    [Tooltip("The prefab of the bullet")]
+    public GameObject bulletPrefab;
+    [Tooltip("The number of bullets to spawn")]
+    public int numBullets = 1;
+    [Tooltip("The sprite used as the icon for the gun")]
+    public Sprite gunIcon;
     [Tooltip("The time between bullet shots")] [SerializeField]
     private float shotCooldown = 0.5f;
+    public int[] nextBulletValue = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 
     private float shotTimer = 0.0f;
-    protected int[] nextBulletValue = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+
+    public static UnityEvent DiceRollUpdate = new UnityEvent();
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +73,7 @@ public class Gun : MonoBehaviour
     virtual protected void RollNextDice()
     {
         nextBulletValue[0] = Random.Range(1, bulletPrefab.GetComponent<Bullet>().numSides + 1);
+        DiceRollUpdate.Invoke();
     }
 
     // Shoot the gun

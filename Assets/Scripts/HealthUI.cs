@@ -23,12 +23,12 @@ public class HealthUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UpdateHearts();
-        GameManger.CurrentHealthUpdate.AddListener(UpdateHearts);
+        UpdateHeartUI();
+        GameManger.CurrentHealthUpdate.AddListener(UpdateHeartUI);
     }
 
     // Update the heart UI
-    void UpdateHearts()
+    void UpdateHeartUI()
     {
         for (int i = 1; i <= heartObjects.Length; i++)
         {

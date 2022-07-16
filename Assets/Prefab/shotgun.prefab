@@ -208,7 +208,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHeld: 0
   bulletPrefab: {fileID: 8215868802848505447, guid: b2ec9620cde0ddb418c0105cbe59cd99, type: 3}
-  shotDelay: 0.5
+  gunIcon: {fileID: 21300000, guid: 9c3850402b2f1ef47b49b84c5b5a24e6, type: 3}
+  shotCooldown: 0.5
   numBullets: 3
   degreesOfFire: 45
 --- !u!114 &5384842453892795093
