@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4167917986168987074}
   - component: {fileID: 873422561362108226}
   - component: {fileID: 4606571698432427105}
+  - component: {fileID: 4967141558690134931}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Damaging
@@ -109,6 +110,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.62, y: 0.23}
   m_EdgeRadius: 0
+--- !u!114 &4967141558690134931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634396895014924352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88dea4cf411da06488534837330ecc5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2
+  destroyOnContact: 0
 --- !u!1 &2957766004036737044
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,8 +137,9 @@ GameObject:
   - component: {fileID: -1849699165953004940}
   - component: {fileID: 3561692964361759668}
   - component: {fileID: 3063589516462863909}
+  - component: {fileID: -742930720025044338}
   m_Layer: 0
-  m_Name: Enemy2
+  m_Name: Sword Bearer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,7 +245,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.5}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -240,7 +256,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.96875, y: 0.75}
+  m_Size: {x: 0.96875, y: 1.5}
   m_EdgeRadius: 0
 --- !u!114 &3063589516462863909
 MonoBehaviour:
@@ -255,8 +271,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  agroRange: 10
   state: follow
   state_time: 0
+  maxHealth: 5
+  currentHealth: 0
+--- !u!114 &-742930720025044338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2957766004036737044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f32b9de4e1b22764e8b625e473745bba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   maxHealth: 5
   currentHealth: 0
 --- !u!1 &5595591497891499234

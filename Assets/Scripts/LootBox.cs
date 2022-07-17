@@ -43,8 +43,7 @@ public class LootBox : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = openBox;
 
             int index = Random.Range(0, possibleDrops.Length);
-            float rotation = Random.Range(-360, 360);
-            Instantiate(possibleDrops[index], transform.position + (Vector3)dropOffset, Quaternion.Euler(new Vector3(0, 0, rotation)));
+            Instantiate(possibleDrops[index], transform.position + (Vector3)dropOffset, Quaternion.identity);
         }
     }
 

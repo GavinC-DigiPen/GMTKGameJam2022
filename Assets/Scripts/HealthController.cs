@@ -3,23 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthController : MonoBehaviour
-{
-
-    void OnCollisionEnter2D(Collision2D col) 
+{    
+    private void Start()
     {
-        if (col.gameObject.tag == "Damaging") 
+        GameManger.CurrentHealthUpdate.AddListener(pushBack);
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        Debug.Log("Collision Detected");
+
+        if (col.gameObject.tag == "Damaging")
         {
+            Debug.Log("Damage Detected");
+
             GameManger.currentHealth -= 1;
+        }
+    }
 
-            Enemy1Controller[] enemies = FindObjectsOfType<Enemy1Controller>();
+    private void pushBack()
+    {
+        BaseEnemy[] enemies = FindObjectsOfType<BaseEnemy>();
 
-            foreach (Enemy1Controller enemy in enemies)
+        foreach (BaseEnemy enemy in enemies)
+        {
+            if ((enemy.transform.position - gameObject.transform.position).magnitude <= 5)
             {
-                if ((enemy.transform.position - gameObject.transform.position).magnitude <= 5)
-                {
-                    enemy.state = "push back";
-                    enemy.state_time = 0;
-                }
+                enemy.state = "push back";
+                enemy.state_time = 0;
             }
         }
     }

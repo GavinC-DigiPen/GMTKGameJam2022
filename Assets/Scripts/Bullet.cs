@@ -26,7 +26,20 @@ public class Bullet : MonoBehaviour
     // Shoot the bullet
     public void Shoot()
     {
-        GetComponent<Rigidbody2D>().velocity = transform.up * velocity;
+        Rigidbody2D playerRB = GameManger.player.GetComponent<Rigidbody2D>();
+
+        Vector2 newVelocity = transform.up* velocity;
+        if ((newVelocity.x > 0 && playerRB.velocity.x > 0) || (newVelocity.x < 0 && playerRB.velocity.x < 0))
+        {
+            Debug.Log("test");
+            newVelocity.x += playerRB.velocity.x;
+        }
+        if ((newVelocity.y > 0 && playerRB.velocity.y > 0) || (newVelocity.y < 0 && playerRB.velocity.y < 0))
+        {
+            newVelocity.y += playerRB.velocity.y;
+        }
+
+        GetComponent<Rigidbody2D>().velocity = newVelocity;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
