@@ -28,11 +28,13 @@ public class EnemyObject : MonoBehaviour
             GameManger.currentHealth -= damage;
             if (destroyOnContact)
             {
+                SummonParticle();
                 Destroy(gameObject);
             }
          }
         if (collision.gameObject.transform.tag == "Wall" && destroyOnWallContact)
         {
+            SummonParticle();
             Destroy(gameObject);
         }
     }
@@ -44,16 +46,18 @@ public class EnemyObject : MonoBehaviour
             GameManger.currentHealth -= damage;
             if (destroyOnContact)
             {
+                SummonParticle();
                 Destroy(gameObject);
             }
         }
         if (collision.gameObject.transform.tag == "Wall" && destroyOnWallContact)
         {
+            SummonParticle();
             Destroy(gameObject);
         }
     }
 
-    private void OnDestroy()
+    private void SummonParticle()
     {
         if (destroyParticle != null)
         {
