@@ -49,7 +49,7 @@ public class JokerController : BaseEnemy
             }
         }
 
-        Debug.Log(state);
+        //Debug.Log(state);
 
         switch (state) 
         {

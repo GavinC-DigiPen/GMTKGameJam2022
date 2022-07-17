@@ -72,17 +72,29 @@ public class GunPickUp : MonoBehaviour
             }
 
             if (closestDroppedGun != null) {
-                if (GameManger.primaryWeapon != null)
+                if (GameManger.secondaryWeapon == null && GameManger.primaryWeapon != null)
                 {
-                    GameManger.primaryWeapon.GetComponent<BoxCollider2D>().enabled = true;
-                    GameManger.primaryWeapon.GetComponent<Gun>().isHeld = false;
-                    GameManger.primaryWeapon.GetComponent<Gun>().gunImage.GetComponent<SpriteRenderer>().sprite = GameManger.primaryWeapon.GetComponent<Gun>().gunWithoutHands;
+                    GameManger.secondaryWeapon = closestDroppedGun;
+                    GameManger.secondaryWeapon.GetComponent<BoxCollider2D>().enabled = false;
+                    GameManger.secondaryWeapon.GetComponent<Gun>().isHeld = true;
+                    GameManger.secondaryWeapon.GetComponent<Gun>().gunImage.GetComponent<SpriteRenderer>().sprite = GameManger.secondaryWeapon.GetComponent<Gun>().gunWithHands;
+                    GameManger.secondaryWeapon.SetActive(false);
+                    GameManger.WeaponUpdate.Invoke();
                 }
+                else
+                {
+                    if (GameManger.primaryWeapon != null)
+                    {
+                        GameManger.primaryWeapon.GetComponent<BoxCollider2D>().enabled = true;
+                        GameManger.primaryWeapon.GetComponent<Gun>().isHeld = false;
+                        GameManger.primaryWeapon.GetComponent<Gun>().gunImage.GetComponent<SpriteRenderer>().sprite = GameManger.primaryWeapon.GetComponent<Gun>().gunWithoutHands;
+                    }
 
-                GameManger.primaryWeapon = closestDroppedGun;
-                GameManger.primaryWeapon.GetComponent<BoxCollider2D>().enabled = false;
-                GameManger.primaryWeapon.GetComponent<Gun>().isHeld = true;
-                GameManger.primaryWeapon.GetComponent<Gun>().gunImage.GetComponent<SpriteRenderer>().sprite = GameManger.primaryWeapon.GetComponent<Gun>().gunWithHands;
+                    GameManger.primaryWeapon = closestDroppedGun;
+                    GameManger.primaryWeapon.GetComponent<BoxCollider2D>().enabled = false;
+                    GameManger.primaryWeapon.GetComponent<Gun>().isHeld = true;
+                    GameManger.primaryWeapon.GetComponent<Gun>().gunImage.GetComponent<SpriteRenderer>().sprite = GameManger.primaryWeapon.GetComponent<Gun>().gunWithHands;
+                }
             }
         }
     }

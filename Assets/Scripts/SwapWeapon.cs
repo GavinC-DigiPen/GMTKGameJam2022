@@ -22,6 +22,7 @@ public class SwapWeapon : MonoBehaviour
 
             if (GameManger.primaryWeapon != null)
             {
+                GameManger.primaryWeapon.transform.position = transform.position;
                 GameManger.primaryWeapon.SetActive(true);
             }
             if (GameManger.secondaryWeapon != null)

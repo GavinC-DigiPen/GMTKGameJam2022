@@ -37,7 +37,7 @@ public class WeaponUI : MonoBehaviour
     void Start()
     {
         UpdateWeaponUI();
-        GameManger.PrimaryWeaponUpdate.AddListener(UpdateWeaponUI);
+        GameManger.WeaponUpdate.AddListener(UpdateWeaponUI);
         Gun.DiceRollUpdate.AddListener(UpdateDiceRollUI);
     }
 

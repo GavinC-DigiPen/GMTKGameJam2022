@@ -23,8 +23,6 @@ public class HealthController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("Collision Detected");
-
         if (col.gameObject.tag == "Damaging")
         {
             Debug.Log("Damage Detected");

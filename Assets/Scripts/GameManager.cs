@@ -17,7 +17,7 @@ public class GameManger : MonoBehaviour
     public static GameObject player;
 
     // Weapons
-    public static UnityEvent PrimaryWeaponUpdate = new UnityEvent();
+    public static UnityEvent WeaponUpdate = new UnityEvent();
     private static GameObject _primaryWeapon;
     public static GameObject primaryWeapon
     {
@@ -28,7 +28,7 @@ public class GameManger : MonoBehaviour
         set
         {
             _primaryWeapon = value;
-            PrimaryWeaponUpdate.Invoke();
+            WeaponUpdate.Invoke();
         }
     }
     public static GameObject secondaryWeapon;

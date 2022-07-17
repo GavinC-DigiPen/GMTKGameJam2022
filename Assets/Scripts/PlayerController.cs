@@ -36,13 +36,17 @@ public class PlayerController : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called at fixed rate
-    void FixedUpdate()
+    // Update is called every frame
+    void Update()
     {
         // Get direction
         direction.x = MostRecentKey(leftKey, rightKey, (int)direction.x);
         direction.y = MostRecentKey(downKey, upKey, (int)direction.y);
+    }
 
+    // FixedUpdate is called at fixed rate
+    void FixedUpdate()
+    {
         // Accelerate
         Vector2 newVelocity = playerRB.velocity;
         newVelocity.x += acceleration * direction.x;
@@ -82,6 +86,7 @@ public class PlayerController : MonoBehaviour
         int direction = lastDirection;
         if (Input.GetKeyDown(negative))
         {
+            Debug.Log("t");
             direction = -1;
         }
         else if (Input.GetKey(negative) && !Input.GetKey(positive))
