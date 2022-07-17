@@ -22,24 +22,15 @@ public class Bullet : MonoBehaviour
     public Sprite[] sprites;
     [Tooltip("The velocity of the bullet")] [SerializeField]
     private float velocity = 15;
+    [Tooltip("Velocity to add to bullets from player (Script)")]
+    public Vector2 playerVelocityToAdd;
 
     private bool isHit = false;
 
     // Shoot the bullet
     public void Shoot()
     {
-        Rigidbody2D playerRB = GameManger.player.GetComponent<Rigidbody2D>();
-
-        Vector2 newVelocity = transform.up* velocity;
-        if ((newVelocity.x > 0 && playerRB.velocity.x > 0) || (newVelocity.x < 0 && playerRB.velocity.x < 0))
-        {
-            Debug.Log("test");
-            newVelocity.x += playerRB.velocity.x;
-        }
-        if ((newVelocity.y > 0 && playerRB.velocity.y > 0) || (newVelocity.y < 0 && playerRB.velocity.y < 0))
-        {
-            newVelocity.y += playerRB.velocity.y;
-        }
+        Vector2 newVelocity = ((Vector2)transform.up * velocity) + playerVelocityToAdd;
 
         GetComponent<Rigidbody2D>().velocity = newVelocity;
     }

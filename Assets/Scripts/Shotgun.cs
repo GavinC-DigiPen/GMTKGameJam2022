@@ -34,7 +34,9 @@ public class Shotgun : Gun
             newBullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, rotation));
 
             newBullet.GetComponent<Bullet>().rolledValue = nextBulletValue[i];
+            newBullet.GetComponent<Bullet>().playerVelocityToAdd = velocityFromPlayer;
             newBullet.GetComponent<Bullet>().Shoot();
+
             Recoil();
         }
         RollNextDice();

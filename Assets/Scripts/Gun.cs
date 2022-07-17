@@ -41,7 +41,8 @@ public class Gun : MonoBehaviour
     public List<int> nextBulletValue;
 
     private static float shotTimer = 0.0f;
-    Vector2 direction;
+    private Vector2 direction;
+    protected Vector2 velocityFromPlayer;
 
     public static UnityEvent DiceRollUpdate = new UnityEvent();
 
@@ -81,6 +82,7 @@ public class Gun : MonoBehaviour
             // Shooting gun
             if (shotTimer <= 0 && Input.GetMouseButton(0))
             {
+                GetVelocityFromPlayer();
                 Shoot();
                 shotTimer = shotCooldown;
             }
@@ -99,6 +101,22 @@ public class Gun : MonoBehaviour
     {
         gunImage.transform.localPosition = gunImage.transform.localPosition - new Vector3(((transform.rotation.eulerAngles.z > 0) ? 1 : -1), 0.7f, 0) * visualKickback;
         GameManger.player.GetComponent<Rigidbody2D>().velocity += -direction * kickback;
+    }
+
+    // Get velocity to add to bullets
+    void GetVelocityFromPlayer()
+    {
+        Rigidbody2D playerRB = GameManger.player.GetComponent<Rigidbody2D>();
+        Vector2 bulletVelocity = transform.up;
+        if ((bulletVelocity.x > 0 && playerRB.velocity.x > 0) || (bulletVelocity.x < 0 && playerRB.velocity.x < 0))
+        {
+            bulletVelocity.x += playerRB.velocity.x;
+        }
+        if ((bulletVelocity.y > 0 && playerRB.velocity.y > 0) || (bulletVelocity.y < 0 && playerRB.velocity.y < 0))
+        {
+            bulletVelocity.y += playerRB.velocity.y;
+        }
+        velocityFromPlayer = bulletVelocity;
     }
 
     // Set the value of the dice
@@ -124,34 +142,38 @@ public class Gun : MonoBehaviour
 
             if (shootAllBulletsFromSamePosition)
             {
-                StartCoroutine(InstantiateBulletWithVariables(bulletPrefab, transform.position, transform.rotation, i * timeBetweenBullets));
+                StartCoroutine(InstantiateBulletWithVariables(bulletPrefab, transform.position, transform.rotation, i));
             }
             else
             {
-                Invoke("InstantiateBullet", i * timeBetweenBullets);
+                StartCoroutine(InstantiateBullet(i));
             }
         }
         Invoke("RollNextDice", i * timeBetweenBullets + 0.01f);
     }
 
-    IEnumerator InstantiateBulletWithVariables(GameObject obj, Vector3 position, Quaternion rotation, float delay)
+    IEnumerator InstantiateBulletWithVariables(GameObject obj, Vector3 position, Quaternion rotation, int index)
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(index * timeBetweenBullets);
 
         Bullet newBulletScript = Instantiate(obj, position, rotation).GetComponent<Bullet>();
 
         newBulletScript.baseDamage = baseDamage;
-        newBulletScript.rolledValue = nextBulletValue[0];
+        newBulletScript.rolledValue = nextBulletValue[index];
+        newBulletScript.playerVelocityToAdd = velocityFromPlayer;
         newBulletScript.Shoot();
         Recoil();
     }
 
-    void InstantiateBullet()
+    IEnumerator InstantiateBullet(int index)
     {
+        yield return new WaitForSeconds(index * timeBetweenBullets);
+
         Bullet newBulletScript = Instantiate(bulletPrefab, transform.position, transform.rotation).GetComponent<Bullet>();
 
         newBulletScript.baseDamage = baseDamage;
-        newBulletScript.rolledValue = nextBulletValue[0];
+        newBulletScript.rolledValue = nextBulletValue[index];
+        newBulletScript.playerVelocityToAdd = velocityFromPlayer;
         newBulletScript.Shoot();
         Recoil();
     }
