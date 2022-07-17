@@ -155,7 +155,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 91e9a130f3f3d20459c0b4cf500c9892, type: 3}
   - {fileID: 21300000, guid: 3b68a07aba328cb479f69c99b095ce87, type: 3}
   - {fileID: 21300000, guid: 8aff35156237abd4ba49940f5f9551f6, type: 3}
-  velocity: 5
+  velocity: 9
 --- !u!114 &8923453455217394037
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -160,7 +160,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 373f984dcd743c54eb8bc58dd8605664, type: 3}
   - {fileID: 21300000, guid: 8cd24506c1620ce4998f507245fcf213, type: 3}
   - {fileID: 21300000, guid: d62f14e6250410148a9736910674d56b, type: 3}
-  velocity: 5
+  velocity: 10
 --- !u!114 &7774630428623228368
 MonoBehaviour:
   m_ObjectHideFlags: 0
