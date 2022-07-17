@@ -16,6 +16,8 @@ public class EnemyObject : MonoBehaviour
     private int damage = 1;
     [Tooltip("If the object is destroyed on contact")] [SerializeField]
     private bool destroyOnContact = false;
+    [Tooltip("If the object destroys on wall")] [SerializeField]
+    private bool destroyOnWallContact = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -24,8 +26,12 @@ public class EnemyObject : MonoBehaviour
             GameManger.currentHealth -= damage;
             if (destroyOnContact)
             {
-                Destroy(gameObject, 0.1f);
+                Destroy(gameObject);
             }
+         }
+        if (collision.gameObject.transform.tag == "Wall" && destroyOnWallContact)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -38,6 +44,10 @@ public class EnemyObject : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+        }
+        if (collision.gameObject.transform.tag == "Wall" && destroyOnWallContact)
+        {
+            Destroy(gameObject);
         }
     }
 }
