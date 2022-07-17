@@ -185,7 +185,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.16962703, y: 0.02311492}
+  m_Offset: {x: -0.10541785, y: -0.05791104}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.7598966, y: 0.45639762}
@@ -196,7 +196,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1234558, y: 1.7196877}
+  m_Size: {x: 0.8421577, y: 1.5576358}
   m_EdgeRadius: 0
 --- !u!114 &5916105472702328671
 MonoBehaviour:
@@ -254,6 +254,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hurtParticle: {fileID: 6281097074092012962, guid: ae1334a3fd6c1824d9fb5064c420d157, type: 3}
+  hitSound: {fileID: 8300000, guid: 14eaae408116476439c117f5e162f257, type: 3}
+  soundObject: {fileID: 4664674652432628545, guid: 827738d0772e97b48bec9239eb6cb2cc, type: 3}
   deathParticle: {fileID: 8745236499388300990, guid: ac3c825af99c2b842a4a530d8d918953, type: 3}
   deathScene: EndScreen
   deathTimeDelay: 3
@@ -266,7 +268,7 @@ AudioSource:
   m_GameObject: {fileID: 5916105472702328670}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 7457802513043124730, guid: 03ffeda21a1c9534e92f63d1feaba2a7, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.05

@@ -7,6 +7,10 @@ public class HealthController : MonoBehaviour
 {
     [Tooltip("The particle effect object that is created on hurt")] [SerializeField]
     private GameObject hurtParticle;
+    [Tooltip("The sound that plays when hit")] [SerializeField]
+    protected AudioClip hitSound;
+    [Tooltip("The object that will be created to make sound")] [SerializeField]
+    protected GameObject soundObject;
     [Tooltip("The particle effect object that is created on death")] [SerializeField]
     private GameObject deathParticle;
     [Tooltip("The scene that is loaded when you die")] [SerializeField]
@@ -33,6 +37,7 @@ public class HealthController : MonoBehaviour
         if (GameManger.currentHealth != GameManger.maxHealth)
         {
             Instantiate(hurtParticle, transform);
+            Instantiate(soundObject, transform.position, Quaternion.identity).GetComponent<AudioSource>().PlayOneShot(hitSound);
         }
 
         // Checklife

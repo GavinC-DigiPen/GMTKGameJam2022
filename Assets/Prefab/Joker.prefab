@@ -281,5 +281,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
-  currentHealth: 0
   contactDamage: 1
+  hitSound: {fileID: 8300000, guid: ff6fa4aaacd313642939057bd837e773, type: 3}
+  soundObject: {fileID: 4664674652432628545, guid: 827738d0772e97b48bec9239eb6cb2cc, type: 3}
