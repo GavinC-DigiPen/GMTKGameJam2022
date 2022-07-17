@@ -25,8 +25,10 @@ public class Gun : MonoBehaviour
     private float timeBetweenBullets = 0.1f;
     [Tooltip("The time between bullet shots")] [SerializeField]
     private float shotCooldown = 0.5f;
+    [Tooltip("The amount of kickback the gun has visually")] [SerializeField]
+    private float visualKickback = 0.1f;
     [Tooltip("The amount of kickback the gun has")] [SerializeField]
-    private float kickback = 0.1f;
+    private float kickback = 1.0f;
     [Tooltip("The prefab of the bullet")]
     public GameObject bulletPrefab;
     [Tooltip("The sprite used as the icon for the gun")]
@@ -82,7 +84,8 @@ public class Gun : MonoBehaviour
                 Shoot();
                 shotTimer = shotCooldown;
 
-                gunImage.transform.localPosition = gunImage.transform.localPosition - new Vector3(((rotation > 0) ? 1 : -1), 0.7f, 0) * kickback;
+                gunImage.transform.localPosition = gunImage.transform.localPosition - new Vector3(((rotation > 0) ? 1 : -1), 0.7f, 0) * visualKickback;
+                GameManger.player.GetComponent<Rigidbody2D>().velocity += -direction * kickback;
             }
             if (shotTimer > 0)
             {
