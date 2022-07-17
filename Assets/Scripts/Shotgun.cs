@@ -24,7 +24,7 @@ public class Shotgun : Gun
         {
             if (gunSound)
             {
-                gunAudioSource.PlayOneShot(gunSound);
+                GameManger.player.GetComponent<AudioSource>().PlayOneShot(gunSound);
             }
 
             GameObject newBullet = Instantiate(bulletPrefab, endOfGun.position, transform.rotation);

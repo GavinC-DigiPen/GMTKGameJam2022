@@ -51,13 +51,11 @@ public class Gun : MonoBehaviour
     public static UnityEvent DiceRollUpdate = new UnityEvent();
 
     private SpriteRenderer gunImageSpriteSource;
-    protected AudioSource gunAudioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         gunImageSpriteSource = gunImage.GetComponent<SpriteRenderer>();
-        gunAudioSource = GetComponent<AudioSource>();
 
         nextBulletValue = new List<int>();
         for (int i = 0; i < numBullets; i++)
@@ -143,7 +141,7 @@ public class Gun : MonoBehaviour
         {
             if (gunSound)
             {
-                gunAudioSource.PlayOneShot(gunSound);
+                GameManger.player.GetComponent<AudioSource>().PlayOneShot(gunSound);
             }
 
             if (shootAllBulletsFromSamePosition)
