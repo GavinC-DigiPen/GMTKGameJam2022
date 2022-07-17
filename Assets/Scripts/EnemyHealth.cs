@@ -16,6 +16,8 @@ public class EnemyHealth : MonoBehaviour
     public int maxHealth = 5;
     [Tooltip("The current enemy health")]
     public int currentHealth;
+    [Tooltip("The amount of damage delt on contact")]
+    public int contactDamage = 1;
 
     // Start is called before the first frame update
     void Start()

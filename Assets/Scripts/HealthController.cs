@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
-
+    
     void OnCollisionEnter2D(Collision2D col) 
     {
         if (col.gameObject.tag == "Damaging") 
