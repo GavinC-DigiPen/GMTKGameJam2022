@@ -12,8 +12,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 441be13d9f513c1478a3aa2ce55a6939, type: 3}
     - target: {fileID: 1987827008454159042, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
+      propertyPath: baseDamage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987827008454159042, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
       propertyPath: numBullets
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987827008454159042, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 7077355862193304258, guid: 632afbbc03380d64d82b0a4cfb4b9277, type: 3}
+    - target: {fileID: 1987827008454159042, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
+      propertyPath: shotCooldown
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 1987827008454159042, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
       propertyPath: bulletOffset.y
@@ -25,7 +37,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1987827008454159043, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
       propertyPath: m_Name
-      value: Double Pistol Variant
+      value: Burst Pistol
       objectReference: {fileID: 0}
     - target: {fileID: 1987827008454159052, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
       propertyPath: m_RootOrder
@@ -33,11 +45,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1987827008454159052, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.325
+      value: -3.5079741
       objectReference: {fileID: 0}
     - target: {fileID: 1987827008454159052, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.138
+      value: -1.6285809
       objectReference: {fileID: 0}
     - target: {fileID: 1987827008454159052, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
       propertyPath: m_LocalPosition.z
