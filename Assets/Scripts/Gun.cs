@@ -109,7 +109,8 @@ public class Gun : MonoBehaviour
     // Shoot the gun
     virtual protected void Shoot()
     {
-        for (int i = 0; i < numBullets; i++)
+        int i = 0;
+        for (; i < numBullets; i++)
         {
             if (gunSound)
             {
@@ -125,7 +126,7 @@ public class Gun : MonoBehaviour
                 Invoke("InstantiateBullet", i * timeBetweenBullets);
             }
         }
-        RollNextDice();
+        Invoke("RollNextDice", i * timeBetweenBullets + 0.01f);
     }
 
     IEnumerator InstantiateBulletWithVariables(GameObject obj, Vector3 position, Quaternion rotation, float delay)

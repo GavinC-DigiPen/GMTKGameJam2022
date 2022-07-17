@@ -23,6 +23,8 @@ public class Bullet : MonoBehaviour
     [Tooltip("The velocity of the bullet")] [SerializeField]
     private float velocity = 15;
 
+    private bool isHit = false;
+
     // Shoot the bullet
     public void Shoot()
     {
@@ -45,8 +47,9 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();
-        if (enemy != null)
+        if (enemy != null && !isHit)
         {
+            isHit = true;
             enemy.currentHealth -= (rolledValue + baseDamage);
             Destroy(gameObject, 0.1f);
         }
