@@ -57,6 +57,9 @@ public class Gun : MonoBehaviour
             nextBulletValue.Add(1);
         }
 
+        float rotation = Random.Range(-360, 360);
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, rotation));
+
         RollNextDice();
     }
 
