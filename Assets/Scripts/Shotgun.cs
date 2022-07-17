@@ -35,6 +35,7 @@ public class Shotgun : Gun
 
             newBullet.GetComponent<Bullet>().rolledValue = nextBulletValue[i];
             newBullet.GetComponent<Bullet>().Shoot();
+            Recoil();
         }
         RollNextDice();
     }

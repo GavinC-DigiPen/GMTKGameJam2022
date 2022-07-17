@@ -41,6 +41,7 @@ public class Gun : MonoBehaviour
     public List<int> nextBulletValue;
 
     private static float shotTimer = 0.0f;
+    Vector2 direction;
 
     public static UnityEvent DiceRollUpdate = new UnityEvent();
 
@@ -72,8 +73,7 @@ public class Gun : MonoBehaviour
         {
             // Rotating gun
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 direction = mousePosition - transform.position;
-            direction = direction.normalized;
+            direction = (mousePosition - transform.position).normalized;
             float rotation = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, -rotation));
             gunImageSpriteSource.flipX = (rotation < 0);
@@ -83,17 +83,22 @@ public class Gun : MonoBehaviour
             {
                 Shoot();
                 shotTimer = shotCooldown;
-
-                gunImage.transform.localPosition = gunImage.transform.localPosition - new Vector3(((rotation > 0) ? 1 : -1), 0.7f, 0) * visualKickback;
-                GameManger.player.GetComponent<Rigidbody2D>().velocity += -direction * kickback;
             }
             if (shotTimer > 0)
             {
                 shotTimer -= Time.deltaTime;
             }
 
+            // Undo kickback
             gunImage.transform.localPosition = Vector3.Lerp(gunImage.transform.localPosition, Vector3.zero, 0.01f);
         }
+    }
+
+    // Do kickback
+    protected void Recoil()
+    {
+        gunImage.transform.localPosition = gunImage.transform.localPosition - new Vector3(((transform.rotation.eulerAngles.z > 0) ? 1 : -1), 0.7f, 0) * visualKickback;
+        GameManger.player.GetComponent<Rigidbody2D>().velocity += -direction * kickback;
     }
 
     // Set the value of the dice
@@ -138,6 +143,7 @@ public class Gun : MonoBehaviour
         newBulletScript.baseDamage = baseDamage;
         newBulletScript.rolledValue = nextBulletValue[0];
         newBulletScript.Shoot();
+        Recoil();
     }
 
     void InstantiateBullet()
@@ -147,5 +153,6 @@ public class Gun : MonoBehaviour
         newBulletScript.baseDamage = baseDamage;
         newBulletScript.rolledValue = nextBulletValue[0];
         newBulletScript.Shoot();
+        Recoil();
     }
 }
