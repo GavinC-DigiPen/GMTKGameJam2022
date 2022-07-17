@@ -270,10 +270,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef8cb788612f48b43b739fce11a5bb05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  agroRange: 10
   state: follow
   state_time: 0
+  speed: 2
+  agroRange: 10
   maxHealth: 5
   currentHealth: 0
 --- !u!114 &-742930720025044338
@@ -288,8 +288,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f32b9de4e1b22764e8b625e473745bba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 12
   currentHealth: 0
+  contactDamage: 1
 --- !u!1 &5595591497891499234
 GameObject:
   m_ObjectHideFlags: 0
