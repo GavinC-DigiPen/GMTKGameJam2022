@@ -2,26 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy2Controller : MonoBehaviour
+public class SwordBearerController : BaseEnemy
 {
-    private GameObject player;
+    
     [SerializeField]
     private float speed = 1;
-
-    public string state = "follow";
-    public int state_time = 0;
+    [SerializeField]
+    private float agroRange;
 
     public int maxHealth = 5;
     public int currentHealth;
 
     private Vector2 virtuallyFacing;
-    private Rigidbody2D EnemyRB;
+    
     private Transform sword;
     private float swordRotation = -9.0f;
-    private void Start()
+    override protected void Start()
     {
-        player = FindObjectOfType<PlayerController>().gameObject;
-        EnemyRB = GetComponent<Rigidbody2D>();
+        base.Start();
+
         sword = gameObject.transform.GetChild(0);
 
         currentHealth = maxHealth;
@@ -39,6 +38,9 @@ public class Enemy2Controller : MonoBehaviour
 
             switch (distance)
             {
+                case float n when n > agroRange:
+                    state = "idle";
+                    break;
                 case float n when n < 2:
                     state = "prep attack";
                     break;
@@ -56,6 +58,15 @@ public class Enemy2Controller : MonoBehaviour
 
         switch (state)
         {
+            case "idle":
+                sword.rotation = Quaternion.identity;
+                sword.right = Vector3.up;
+                sword.localPosition = Vector3.zero;
+                EnemyRB.velocity = Vector3.zero;
+                state = null;
+
+                break;
+
             case "follow":
 
                 virtuallyFacing = new Vector2(direction.x, direction.y).normalized;

@@ -2,21 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy1Controller : MonoBehaviour
+public class MinorController : BaseEnemy
 {
-    private GameObject player;
     [SerializeField]
     private float speed = 1;
-
-    public string state = "follow";
-    public int state_time = 0;
+    [SerializeField]
+    private float agroRange;
 
     private Vector2 virtuallyFacing;
-    private Rigidbody2D EnemyRB;
-    private void Start()
+
+    override protected void Start()
     {
-        player = FindObjectOfType<PlayerController>().gameObject;
-        EnemyRB = GetComponent<Rigidbody2D>();
+        base.Start();
     }
 
     void FixedUpdate()
@@ -30,6 +27,9 @@ public class Enemy1Controller : MonoBehaviour
 
             switch (distance)
             {
+                case float n when n > agroRange:
+                    state = "idle";
+                    break;
                 case float n when n < 3:
                     state = "prep lunge";
                     break;
@@ -41,11 +41,19 @@ public class Enemy1Controller : MonoBehaviour
 
         switch (state)
         {
+            case "idle":
+                EnemyRB.velocity = Vector3.zero;
+                state = null;
+                break;
+
             case "follow":
 
                 virtuallyFacing = new Vector2(direction.x, direction.y).normalized;
                 EnemyRB.velocity = virtuallyFacing * speed;
                 state = null;
+
+                GetComponent<SpriteRenderer>().flipX = (EnemyRB.velocity.x < 0);
+
                 break;
 
             case "prep lunge":
@@ -53,6 +61,7 @@ public class Enemy1Controller : MonoBehaviour
                 {
                     EnemyRB.velocity = Vector2.zero;
                     virtuallyFacing = direction.normalized;
+                    GetComponent<SpriteRenderer>().flipX = (direction.x < 0);
                 }
                 if (state_time >= 15)
                 {
