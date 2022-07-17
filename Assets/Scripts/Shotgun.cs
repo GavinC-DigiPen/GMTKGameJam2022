@@ -27,7 +27,7 @@ public class Shotgun : Gun
                 gunAudioSource.PlayOneShot(gunSound);
             }
 
-            GameObject newBullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+            GameObject newBullet = Instantiate(bulletPrefab, endOfGun.position, transform.rotation);
 
             float rotation = transform.rotation.eulerAngles.z - startingOffset;
             rotation += degreeIncrement * i;

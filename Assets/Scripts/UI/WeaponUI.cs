@@ -28,6 +28,10 @@ public class WeaponUI : MonoBehaviour
     private GameObject secondaryWeaponBaseDamageObject;
     [Tooltip("The numbers used to display base damage")] [SerializeField]
     private Sprite[] numberSprites;
+    [Tooltip("The particle effect object for good roll")] [SerializeField]
+    private GameObject goodRollParticle;
+    [Tooltip("The particle effect object for bad roll")] [SerializeField]
+    private GameObject badRollParticle;
 
     // Start is called before the first frame update
     void Start()
@@ -101,6 +105,17 @@ public class WeaponUI : MonoBehaviour
             for (int i = 0; i < primaryGun.numBullets && i < primaryWeaponDiceObjects.Length; i++)
             {
                 primaryWeaponDiceObjects[i].GetComponent<Image>().sprite = primaryGun.bulletPrefab.GetComponent<Bullet>().sprites[primaryGun.nextBulletValue[i] - 1];
+
+                if (primaryGun.nextBulletValue[i] == primaryGun.bulletPrefab.GetComponent<Bullet>().numSides)
+                {
+                    //Instantiate(goodRollParticle, primaryWeaponDiceObjects[i].GetComponent<RectTransform>());
+                    Instantiate(goodRollParticle, primaryWeaponDiceObjects[i].transform);
+                }
+                if (primaryGun.nextBulletValue[i] == 1)
+                {
+                    //Instantiate(badRollParticle, primaryWeaponDiceObjects[i].GetComponent<RectTransform>());
+                    Instantiate(badRollParticle, primaryWeaponDiceObjects[i].transform);
+                }
             }
         }
 

@@ -32,6 +32,10 @@ public class InteractPopUp : MonoBehaviour
         {
             isActive = true;
         }
+        else if (GetComponent<Gun>() == null && GetComponent<LootBox>() == null)
+        {
+            isActive = true;
+        }
         else
         {
             isActive = false;

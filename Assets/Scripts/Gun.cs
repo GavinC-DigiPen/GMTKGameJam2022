@@ -37,6 +37,10 @@ public class Gun : MonoBehaviour
     private GameObject gunImage;
     [Tooltip("The sound that plays when the gun is shot")] [SerializeField]
     protected AudioClip gunSound;
+    [Tooltip("The particle effect object that is created on fire")] [SerializeField]
+    private GameObject gunParticle;
+    [Tooltip("Gun particle effect location")] [SerializeField]
+    protected Transform endOfGun;
     [Tooltip("All the bullet's value (not all are used with all weapons")]
     public List<int> nextBulletValue;
 
@@ -99,7 +103,9 @@ public class Gun : MonoBehaviour
     // Do kickback
     protected void Recoil()
     {
-        gunImage.transform.localPosition = gunImage.transform.localPosition - new Vector3(((transform.rotation.eulerAngles.z > 0) ? 1 : -1), 0.7f, 0) * visualKickback;
+        Instantiate(gunParticle, endOfGun);
+        //gunImage.transform.localPosition = gunImage.transform.localPosition - new Vector3(((transform.rotation.eulerAngles.z > 0) ? 1 : -1), ((transform.rotation.eulerAngles.z > 0) ? 0.7f : -0.7f), 0) * visualKickback;
+        gunImage.transform.localPosition = gunImage.transform.localPosition - new Vector3((!gunImageSpriteSource.flipX ? 1 : -1), 1, 0) * visualKickback;
         GameManger.player.GetComponent<Rigidbody2D>().velocity += -direction * kickback;
     }
 
@@ -142,7 +148,7 @@ public class Gun : MonoBehaviour
 
             if (shootAllBulletsFromSamePosition)
             {
-                StartCoroutine(InstantiateBulletWithVariables(bulletPrefab, transform.position, transform.rotation, i));
+                StartCoroutine(InstantiateBulletWithVariables(bulletPrefab, endOfGun.position, transform.rotation, i));
             }
             else
             {
@@ -169,7 +175,7 @@ public class Gun : MonoBehaviour
     {
         yield return new WaitForSeconds(index * timeBetweenBullets);
 
-        Bullet newBulletScript = Instantiate(bulletPrefab, transform.position, transform.rotation).GetComponent<Bullet>();
+        Bullet newBulletScript = Instantiate(bulletPrefab, endOfGun.position, transform.rotation).GetComponent<Bullet>();
 
         newBulletScript.baseDamage = baseDamage;
         newBulletScript.rolledValue = nextBulletValue[index];

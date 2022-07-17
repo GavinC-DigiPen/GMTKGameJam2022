@@ -150,9 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62168746a43007343bcfa644f0282762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: -1
-  rolledValue: 0
   numSides: 10
+  velocity: 5
   sprites:
   - {fileID: 21300000, guid: 620ff4d0847f75f40be0d6d82af06d54, type: 3}
   - {fileID: 21300000, guid: 8c28675e556c9934b9350b2def21d40d, type: 3}
@@ -164,7 +163,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b77c9b66c050a0d4788d078da476cf7c, type: 3}
   - {fileID: 21300000, guid: c8dbacb1ff2126d45aab70ea4cac8091, type: 3}
   - {fileID: 21300000, guid: 7b95d2aa176206146b64c5a306876bc6, type: 3}
-  velocity: 5
+  hitParticle: {fileID: 3022600476132106478, guid: f9b478bbace862f40b3e805ec953e63b, type: 3}
+  baseDamage: -1
+  rolledValue: 0
+  playerVelocityToAdd: {x: 0, y: 0}
 --- !u!114 &7749699916498821794
 MonoBehaviour:
   m_ObjectHideFlags: 0

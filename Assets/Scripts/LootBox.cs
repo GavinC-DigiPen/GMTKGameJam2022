@@ -20,6 +20,8 @@ public class LootBox : MonoBehaviour
     private KeyCode interactKey = KeyCode.E;
     [Tooltip("The open box sprite")] [SerializeField]
     private Sprite openBox;
+    [Tooltip("The particle effect object for chest being opened")] [SerializeField]
+    private GameObject openParticle;
     [Tooltip("If the box is open (For scripts)")]
     public bool isOpen = false;
 
@@ -41,6 +43,7 @@ public class LootBox : MonoBehaviour
         {
             isOpen = true;
             GetComponent<SpriteRenderer>().sprite = openBox;
+            Instantiate(openParticle, transform);
 
             int index = Random.Range(0, possibleDrops.Length);
             Instantiate(possibleDrops[index], transform.position + (Vector3)dropOffset, Quaternion.identity);

@@ -52,6 +52,7 @@ public class ButtonsUI : MonoBehaviour
     IEnumerator _ChangeScene(int index)
     {
         UIAudioSource.PlayOneShot(buttonClickSound);
+        Time.timeScale = 1;
         yield return new WaitForSeconds(timeDelay);
         SceneManager.LoadScene(sceneName[index]);
     }
@@ -59,6 +60,7 @@ public class ButtonsUI : MonoBehaviour
     IEnumerator _QuiteGame()
     {
         UIAudioSource.PlayOneShot(buttonClickSound);
+        Time.timeScale = 1;
         yield return new WaitForSeconds(timeDelay);
 
         #if UNITY_EDITOR
