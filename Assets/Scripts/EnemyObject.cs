@@ -18,6 +18,8 @@ public class EnemyObject : MonoBehaviour
     private bool destroyOnContact = false;
     [Tooltip("If the object destroys on wall")] [SerializeField]
     private bool destroyOnWallContact = false;
+    [Tooltip("The particle effect object that is created on destroy")] [SerializeField]
+    private GameObject destroyParticle;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -48,6 +50,14 @@ public class EnemyObject : MonoBehaviour
         if (collision.gameObject.transform.tag == "Wall" && destroyOnWallContact)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (destroyParticle != null)
+        {
+            Instantiate(destroyParticle, transform.position, Quaternion.identity);
         }
     }
 }

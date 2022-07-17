@@ -41,13 +41,11 @@ public class Bullet : MonoBehaviour
         if (enemy != null)
         {
             enemy.currentHealth -= (rolledValue + baseDamage);
-            Instantiate(hitParticle, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 
         if (collision.gameObject.transform.tag == "Wall")
         {
-            Instantiate(hitParticle, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
@@ -58,14 +56,17 @@ public class Bullet : MonoBehaviour
         if (enemy != null)
         {
             enemy.currentHealth -= (rolledValue + baseDamage);
-            Instantiate(hitParticle, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 
         if (collision.gameObject.transform.tag == "Wall")
         {
-            Instantiate(hitParticle, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        Instantiate(hitParticle, transform.position, Quaternion.identity);
     }
 }
