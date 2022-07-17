@@ -3,18 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SwordBearerController : BaseEnemy
-{
-    
-    [SerializeField]
-    private float speed = 1;
-    [SerializeField]
-    private float agroRange;
-
-    public int maxHealth = 5;
-    public int currentHealth;
-
-    private Vector2 virtuallyFacing;
-    
+{    
     private Transform sword;
     private float swordRotation = -9.0f;
     override protected void Start()
@@ -22,8 +11,6 @@ public class SwordBearerController : BaseEnemy
         base.Start();
 
         sword = gameObject.transform.GetChild(0);
-
-        currentHealth = maxHealth;
     }
 
     void FixedUpdate()
@@ -174,13 +161,5 @@ public class SwordBearerController : BaseEnemy
         }
 
         state_time += 1;
-    }
-
-    void Update()
-    {
-        if (currentHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
     }
 }

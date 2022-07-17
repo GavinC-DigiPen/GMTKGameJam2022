@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class MinorController : BaseEnemy
 {
-    [SerializeField]
-    private float speed = 1;
-    [SerializeField]
-    private float agroRange;
-
-    private Vector2 virtuallyFacing;
-
     override protected void Start()
     {
         base.Start();
