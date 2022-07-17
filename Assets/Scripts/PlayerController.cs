@@ -86,7 +86,6 @@ public class PlayerController : MonoBehaviour
         int direction = lastDirection;
         if (Input.GetKeyDown(negative))
         {
-            Debug.Log("t");
             direction = -1;
         }
         else if (Input.GetKey(negative) && !Input.GetKey(positive))

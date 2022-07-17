@@ -157,7 +157,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d84246feacf20174c886d87d12097bd3, type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a3e66a19c6e2a5047a58398239113b16, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -211,4 +211,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactKey: 101
-  sceneName: EndScreen
+  useParticle: {fileID: 4580067084621719368, guid: 5b67498f511d05b41a1606069fea4376, type: 3}
+  exitScene: EndScreen
+  leaveTimeDelay: 3

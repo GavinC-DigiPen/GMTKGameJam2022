@@ -139,7 +139,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b450bc358fcd63e488af66de3a853d84, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -253,7 +253,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5580f76403fa1e499c2a9ab9e99bc0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurtParticle: {fileID: 6281097074092012962, guid: ae1334a3fd6c1824d9fb5064c420d157, type: 3}
+  deathParticle: {fileID: 8745236499388300990, guid: ac3c825af99c2b842a4a530d8d918953, type: 3}
   deathScene: EndScreen
+  deathTimeDelay: 3
 --- !u!82 &7545835023199710132
 AudioSource:
   m_ObjectHideFlags: 0
