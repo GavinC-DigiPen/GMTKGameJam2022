@@ -47,7 +47,7 @@ public class WeaponUI : MonoBehaviour
         if (GameManger.primaryWeapon != null)
         {
             primaryWeaponObject.SetActive(true);
-            primaryWeaponObject.GetComponent<Image>().sprite = GameManger.primaryWeapon.GetComponent<Gun>().gunIcon;
+            primaryWeaponObject.GetComponent<Image>().sprite = GameManger.primaryWeapon.GetComponent<Gun>().gunWithoutHands;
 
             for (int i = 0; i < primaryWeaponDiceObjects.Length; i++)
             {
@@ -72,7 +72,7 @@ public class WeaponUI : MonoBehaviour
         if (GameManger.secondaryWeapon != null)
         {
             secondaryWeaponObject.SetActive(true);
-            secondaryWeaponObject.GetComponent<Image>().sprite = GameManger.secondaryWeapon.GetComponent<Gun>().gunIcon;
+            secondaryWeaponObject.GetComponent<Image>().sprite = GameManger.secondaryWeapon.GetComponent<Gun>().gunWithoutHands;
 
             for (int i = 0; i < secondaryWeaponDiceObjects.Length; i++)
             {
@@ -108,12 +108,10 @@ public class WeaponUI : MonoBehaviour
 
                 if (primaryGun.nextBulletValue[i] == primaryGun.bulletPrefab.GetComponent<Bullet>().numSides)
                 {
-                    //Instantiate(goodRollParticle, primaryWeaponDiceObjects[i].GetComponent<RectTransform>());
                     Instantiate(goodRollParticle, primaryWeaponDiceObjects[i].transform);
                 }
                 if (primaryGun.nextBulletValue[i] == 1)
                 {
-                    //Instantiate(badRollParticle, primaryWeaponDiceObjects[i].GetComponent<RectTransform>());
                     Instantiate(badRollParticle, primaryWeaponDiceObjects[i].transform);
                 }
             }

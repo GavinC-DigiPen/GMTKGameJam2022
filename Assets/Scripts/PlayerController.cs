@@ -31,11 +31,13 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         GameManger.player = gameObject;
+        GameManger.currentHealth = GameManger.maxHealth;
+
         playerRB = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    // Update is called at fixed rate
+    void FixedUpdate()
     {
         // Get direction
         direction.x = MostRecentKey(leftKey, rightKey, (int)direction.x);

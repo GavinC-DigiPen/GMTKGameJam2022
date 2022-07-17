@@ -24,6 +24,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7077355862193304258, guid: 632afbbc03380d64d82b0a4cfb4b9277, type: 3}
     - target: {fileID: 1987827008454159042, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
+      propertyPath: gunWithHands
+      value: 
+      objectReference: {fileID: 21300000, guid: a92b88126b8af3042ae16b8f710819f5, type: 3}
+    - target: {fileID: 1987827008454159042, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
       propertyPath: shotCooldown
       value: 0.85
       objectReference: {fileID: 0}
@@ -31,6 +35,10 @@ PrefabInstance:
       propertyPath: bulletOffset.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1987827008454159042, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
+      propertyPath: gunWithoutHands
+      value: 
+      objectReference: {fileID: 21300000, guid: e0139379c9c4dc14d8b238503179ee20, type: 3}
     - target: {fileID: 1987827008454159042, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
       propertyPath: timeBetweenBullets
       value: 0.1
@@ -103,10 +111,30 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3583174083036826674, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3583174083036826674, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3583174083036826674, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3583174083036826674, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3583174083036826674, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 7528337052827654498, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a92b88126b8af3042ae16b8f710819f5, type: 3}
+      objectReference: {fileID: 21300000, guid: e0139379c9c4dc14d8b238503179ee20, type: 3}
     - target: {fileID: 7528337052827654498, guid: b4de887e479fa634fafba187d8eff9e8, type: 3}
       propertyPath: m_Color.b
       value: 1

@@ -76,11 +76,13 @@ public class GunPickUp : MonoBehaviour
                 {
                     GameManger.primaryWeapon.GetComponent<BoxCollider2D>().enabled = true;
                     GameManger.primaryWeapon.GetComponent<Gun>().isHeld = false;
+                    GameManger.primaryWeapon.GetComponent<Gun>().gunImage.GetComponent<SpriteRenderer>().sprite = GameManger.primaryWeapon.GetComponent<Gun>().gunWithoutHands;
                 }
 
                 GameManger.primaryWeapon = closestDroppedGun;
                 GameManger.primaryWeapon.GetComponent<BoxCollider2D>().enabled = false;
                 GameManger.primaryWeapon.GetComponent<Gun>().isHeld = true;
+                GameManger.primaryWeapon.GetComponent<Gun>().gunImage.GetComponent<SpriteRenderer>().sprite = GameManger.primaryWeapon.GetComponent<Gun>().gunWithHands;
             }
         }
     }

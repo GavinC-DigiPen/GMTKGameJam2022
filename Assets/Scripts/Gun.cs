@@ -31,10 +31,12 @@ public class Gun : MonoBehaviour
     private float kickback = 1.0f;
     [Tooltip("The prefab of the bullet")]
     public GameObject bulletPrefab;
-    [Tooltip("The sprite used as the icon for the gun")]
-    public Sprite gunIcon;
+    [Tooltip("The sprite uwithout hands")]
+    public Sprite gunWithoutHands;
+    [Tooltip("The sprite with hands")]
+    public Sprite gunWithHands;
     [Tooltip("The child that is the image of the gun")] [SerializeField]
-    private GameObject gunImage;
+    public GameObject gunImage;
     [Tooltip("The sound that plays when the gun is shot")] [SerializeField]
     protected AudioClip gunSound;
     [Tooltip("The particle effect object that is created on fire")] [SerializeField]
@@ -69,8 +71,8 @@ public class Gun : MonoBehaviour
         RollNextDice();
     }
 
-    // Update is called once per frame
-    void Update()
+    // Updates at fixed rate
+    void FixedUpdate()
     {
         if (isHeld)
         {
@@ -79,7 +81,7 @@ public class Gun : MonoBehaviour
             direction = (mousePosition - transform.position).normalized;
             float rotation = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, -rotation));
-            gunImageSpriteSource.flipX = (rotation < 0);
+            gunImageSpriteSource.flipY = (rotation < 0);
 
             // Shooting gun
             if (shotTimer <= 0 && Input.GetMouseButton(0))
@@ -94,7 +96,7 @@ public class Gun : MonoBehaviour
             }
 
             // Undo kickback
-            gunImage.transform.localPosition = Vector3.Lerp(gunImage.transform.localPosition, Vector3.zero, 0.01f);
+            gunImage.transform.localPosition = Vector3.Lerp(gunImage.transform.localPosition, Vector3.zero, 0.1f);
         }
     }
 
@@ -103,7 +105,7 @@ public class Gun : MonoBehaviour
     {
         Instantiate(gunParticle, endOfGun);
         //gunImage.transform.localPosition = gunImage.transform.localPosition - new Vector3(((transform.rotation.eulerAngles.z > 0) ? 1 : -1), ((transform.rotation.eulerAngles.z > 0) ? 0.7f : -0.7f), 0) * visualKickback;
-        gunImage.transform.localPosition = gunImage.transform.localPosition - new Vector3((!gunImageSpriteSource.flipX ? 1 : -1), 1, 0) * visualKickback;
+        gunImage.transform.localPosition = gunImage.transform.localPosition - new Vector3((!gunImageSpriteSource.flipY ? 1 : -1), 1, 0) * visualKickback;
         GameManger.player.GetComponent<Rigidbody2D>().velocity += -direction * kickback;
     }
 
